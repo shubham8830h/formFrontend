@@ -5,7 +5,7 @@ import Button from "react-bootstrap/esm/Button";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-
+const BASEURL="http://localhost:3001"
 const Signup = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -23,10 +23,7 @@ const Signup = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(
-        "http://localhost:3001/signup",
-        formData
-      );
+      const { data } = await axios.post(`${BASEURL}/signup`, formData);
       setFormData(data);
 
       navigate("/signin");

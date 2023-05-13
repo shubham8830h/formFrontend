@@ -6,6 +6,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./Signin.css";
 import { toast } from "react-toastify";
+const BASEURL = "http://localhost:3001";
 
 const SigninScreen = ({ handleLogin }) => {
   const [formData, setFormData] = useState({
@@ -17,10 +18,7 @@ const SigninScreen = ({ handleLogin }) => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(
-        "http://localhost:3001/login",
-        formData
-      );
+      const { data } = await axios.post(`${BASEURL}/login`, formData);
       setFormData(data);
       localStorage.setItem("userInformation", JSON.stringify(data));
       handleLogin(data);
